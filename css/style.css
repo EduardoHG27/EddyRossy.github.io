@@ -9764,52 +9764,38 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 /* Countdown Styles */
-.countdown-container {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-    margin-top: 40px;
-}
-
 .countdown-item {
     text-align: center;
-    background: #FFFFFF;
-    padding: 25px 15px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    min-width: 110px;
-    border: 2px solid #E47A2E;
+    padding: 20px;
+    min-width: 120px;
 }
 
 .countdown-number {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #E47A2E;
+    font-size: 3rem;
+    font-weight: bold;
+    color: #C19B76; /* Color que combina con tu tema */
     font-family: 'Montserrat', sans-serif;
-    line-height: 1;
-    margin-bottom: 8px;
 }
 
 .countdown-label {
-    font-size: 0.9rem;
-    color: #121F38;
+    font-size: 1rem;
+    color: #6c757d;
     text-transform: uppercase;
-    font-weight: 600;
     letter-spacing: 1px;
+    margin-top: 10px;
 }
 
 @media (max-width: 768px) {
-    .countdown-container {
-        gap: 10px;
-    }
-    
     .countdown-item {
         min-width: 80px;
-        padding: 20px 10px;
+        padding: 10px;
     }
     
     .countdown-number {
         font-size: 2rem;
+    }
+    
+    .countdown-label {
+        font-size: 0.8rem;
     }
 }

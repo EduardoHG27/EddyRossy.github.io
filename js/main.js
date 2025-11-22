@@ -115,3 +115,28 @@
     
 })(jQuery);
 
+function updateCountdown() {
+    const weddingDate = new Date('January 17, 2026 14:00:00').getTime();
+    const now = new Date().getTime();
+    const distance = weddingDate - now;
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.querySelector('.countdown-number.days').textContent = days;
+    document.querySelector('.countdown-number.hours').textContent = hours.toString().padStart(2, '0');
+    document.querySelector('.countdown-number.minutes').textContent = minutes.toString().padStart(2, '0');
+    document.querySelector('.countdown-number.seconds').textContent = seconds.toString().padStart(2, '0');
+
+    if (distance < 0) {
+        clearInterval(countdownInterval);
+        document.getElementById('countdown-timer').innerHTML = '<h3 class="text-primary">¡Hoy es el gran día!</h3>';
+    }
+}
+
+// Actualizar cada segundo
+const countdownInterval = setInterval(updateCountdown, 1000);
+updateCountdown(); // Llamar inmediatamente
+

@@ -20,7 +20,7 @@
 
     <!-- Libraries Stylesheet -->
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
+    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
@@ -30,7 +30,7 @@
     <!-- Navbar Start -->
     <nav class="navbar fixed-top shadow-sm navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-lg-5">
         <a href="index.html" class="navbar-brand d-block d-lg-none">
-            <h1 class="font-secondary text-white mb-n2">Eduardo <span class="text-primary">&</span> Rosa María</h1>
+            <h1 class="font-secondary text-white mb-n2">Eduardo <span class="text-primary">&</span> Rosa</h1>
         </a>
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
@@ -39,7 +39,7 @@
             <div class="navbar-nav ml-auto py-0">
                 <a href="#home" class="nav-item nav-link active">Home</a>
                 <a href="#about" class="nav-item nav-link">About</a>
-                <a href="#countdown" class="nav-item nav-link">Countdown</a> 
+                <a href="#countdown" class="nav-item nav-link">Countdown</a>
                 <a href="#story" class="nav-item nav-link">Story</a>
                 <a href="#gallery" class="nav-item nav-link">Gallery</a>
             </div>
@@ -104,38 +104,36 @@
             </a>
         </div>
     </div>
-    <!-- Carousel End -->
+        <!-- Carousel End -->
 
-      <!-- Countdown Start -->
-    <div class="container-fluid py-5 bg-secondary" id="countdown">
+        <div class="container-fluid py-5 bg-light" id="countdown">
         <div class="container py-5">
             <div class="section-title position-relative text-center">
                 <h6 class="text-uppercase text-primary mb-3" style="letter-spacing: 3px;">Cuenta Regresiva</h6>
-                <h1 class="font-secondary display-4">Faltan...</h1>
+                <h1 class="font-secondary display-4">Faltan</h1>
                 <i class="far fa-heart text-dark"></i>
             </div>
             <div class="row justify-content-center">
                 <div class="col-lg-8 text-center">
-                    <div class="countdown-container">
-                        <div class="countdown-item">
-                            <div class="countdown-number" id="days">00</div>
+                    <div id="countdown-timer" class="d-flex justify-content-center">
+                        <div class="countdown-item mx-2">
+                            <div class="countdown-number days">0</div>
                             <div class="countdown-label">Días</div>
                         </div>
-                        <div class="countdown-item">
-                            <div class="countdown-number" id="hours">00</div>
+                        <div class="countdown-item mx-2">
+                            <div class="countdown-number hours">0</div>
                             <div class="countdown-label">Horas</div>
                         </div>
-                        <div class="countdown-item">
-                            <div class="countdown-number" id="minutes">00</div>
+                        <div class="countdown-item mx-2">
+                            <div class="countdown-number minutes">0</div>
                             <div class="countdown-label">Minutos</div>
                         </div>
-                        <div class="countdown-item">
-                            <div class="countdown-number" id="seconds">00</div>
+                        <div class="countdown-item mx-2">
+                            <div class="countdown-number seconds">0</div>
                             <div class="countdown-label">Segundos</div>
                         </div>
                     </div>
-                    <h4 class="text-primary mt-4">¡Nos casamos el 17 de Enero!</h4>
-                    <p class="text-muted mt-2">El gran día se acerca, estamos emocionados de compartirlo con ustedes</p>
+                    <p class="mt-4 font-italic text-muted">Para el día más especial de nuestras vidas</p>
                 </div>
             </div>
         </div>
@@ -446,112 +444,14 @@
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/easing/1.4.1/easing.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/isotope/isotope.pkgd.min.js"></script>
+    <script src="lib/lightbox/js/lightbox.min.js"></script>
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            function updateCountdown() {
-                const weddingDate = new Date('January 17, 2025 14:00:00').getTime();
-                const now = new Date().getTime();
-                const distance = weddingDate - now;
-
-                if (distance < 0) {
-                    document.getElementById('days').textContent = '00';
-                    document.getElementById('hours').textContent = '00';
-                    document.getElementById('minutes').textContent = '00';
-                    document.getElementById('seconds').textContent = '00';
-                    
-                    const message = document.querySelector('.countdown-container');
-                    if (message) {
-                        message.innerHTML = '<h3 class="text-primary">¡Hoy es el gran día! 🎉</h3>';
-                    }
-                    return;
-                }
-
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                document.getElementById('days').textContent = days.toString().padStart(2, '0');
-                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
-            }
-
-            // Iniciar el contador
-            updateCountdown();
-            setInterval(updateCountdown, 1000);
-        });
-    </script>
-
-    <!-- Template Javascript -->
-    <script>
-        // Basic functionality for your template
-        $(document).ready(function(){
-            // Back to top button
-            $(window).scroll(function(){
-                if($(this).scrollTop() > 300){
-                    $('.back-to-top').fadeIn();
-                } else{
-                    $('.back-to-top').fadeOut();
-                }
-            });
-            
-            $('.back-to-top').click(function(){
-                $("html, body").animate({scrollTop: 0}, 600);
-                return false;
-            });
-
-            // Video Modal
-            $('#videoModal').on('show.bs.modal', function (e) {
-                var videoSrc = $(e.relatedTarget).data('src');
-                $('#video').attr('src', videoSrc + "?autoplay=1&amp;modestbranding=1&amp;showinfo=0");
-            });
-
-            $('#videoModal').on('hide.bs.modal', function (e) {
-                $('#video').attr('src', '');
-            });
-
-            // Gallery Carousel
-            $('.gallery-carousel').owlCarousel({
-                autoplay: true,
-                smartSpeed: 1500,
-                margin: 10,
-                dots: false,
-                loop: true,
-                nav: true,
-                navText: [
-                    '<i class="fa fa-arrow-left"></i>',
-                    '<i class="fa fa-arrow-right"></i>'
-                ],
-                responsive: {
-                    0:{
-                        items:1
-                    },
-                    576:{
-                        items:2
-                    },
-                    768:{
-                        items:3
-                    },
-                    992:{
-                        items:4
-                    },
-                    1200:{
-                        items:5
-                    }
-                }
-            });
-        });
-    </script>
-    
 </body>
 
 </html>
