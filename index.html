@@ -20,7 +20,7 @@
 
     <!-- Libraries Stylesheet -->
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
@@ -446,48 +446,112 @@
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/isotope/isotope.pkgd.min.js"></script>
-    <script src="lib/lightbox/js/lightbox.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/easing/1.4.1/easing.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 
-
     <script>
-    // Countdown Timer
-    function updateCountdown() {
-        const weddingDate = new Date('January 17, 2025 14:00:00').getTime();
-        const now = new Date().getTime();
-        const distance = weddingDate - now;
+        document.addEventListener('DOMContentLoaded', function() {
+            function updateCountdown() {
+                const weddingDate = new Date('January 17, 2025 14:00:00').getTime();
+                const now = new Date().getTime();
+                const distance = weddingDate - now;
 
-        // Calculate days, hours, minutes, seconds
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                if (distance < 0) {
+                    document.getElementById('days').textContent = '00';
+                    document.getElementById('hours').textContent = '00';
+                    document.getElementById('minutes').textContent = '00';
+                    document.getElementById('seconds').textContent = '00';
+                    
+                    const message = document.querySelector('.countdown-container');
+                    if (message) {
+                        message.innerHTML = '<h3 class="text-primary">¡Hoy es el gran día! 🎉</h3>';
+                    }
+                    return;
+                }
 
-        // Display the results
-        document.getElementById('days').innerHTML = days.toString().padStart(2, '0');
-        document.getElementById('hours').innerHTML = hours.toString().padStart(2, '0');
-        document.getElementById('minutes').innerHTML = minutes.toString().padStart(2, '0');
-        document.getElementById('seconds').innerHTML = seconds.toString().padStart(2, '0');
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        // If the countdown is finished
-        if (distance < 0) {
-            clearInterval(countdownTimer);
-            document.querySelector('.countdown-container').innerHTML = '<h3 class="text-primary">¡Hoy es el gran día! 🎉</h3>';
-        }
-    }
+                document.getElementById('days').textContent = days.toString().padStart(2, '0');
+                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            }
 
-    // Update countdown every second
-    const countdownTimer = setInterval(updateCountdown, 1000);
+            // Iniciar el contador
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        });
+    </script>
+
+    <!-- Template Javascript -->
+    <script>
+        // Basic functionality for your template
+        $(document).ready(function(){
+            // Back to top button
+            $(window).scroll(function(){
+                if($(this).scrollTop() > 300){
+                    $('.back-to-top').fadeIn();
+                } else{
+                    $('.back-to-top').fadeOut();
+                }
+            });
+            
+            $('.back-to-top').click(function(){
+                $("html, body").animate({scrollTop: 0}, 600);
+                return false;
+            });
+
+            // Video Modal
+            $('#videoModal').on('show.bs.modal', function (e) {
+                var videoSrc = $(e.relatedTarget).data('src');
+                $('#video').attr('src', videoSrc + "?autoplay=1&amp;modestbranding=1&amp;showinfo=0");
+            });
+
+            $('#videoModal').on('hide.bs.modal', function (e) {
+                $('#video').attr('src', '');
+            });
+
+            // Gallery Carousel
+            $('.gallery-carousel').owlCarousel({
+                autoplay: true,
+                smartSpeed: 1500,
+                margin: 10,
+                dots: false,
+                loop: true,
+                nav: true,
+                navText: [
+                    '<i class="fa fa-arrow-left"></i>',
+                    '<i class="fa fa-arrow-right"></i>'
+                ],
+                responsive: {
+                    0:{
+                        items:1
+                    },
+                    576:{
+                        items:2
+                    },
+                    768:{
+                        items:3
+                    },
+                    992:{
+                        items:4
+                    },
+                    1200:{
+                        items:5
+                    }
+                }
+            });
+        });
+    </script>
     
-    // Initial call
-    updateCountdown();
-</script>
 </body>
 
 </html>
